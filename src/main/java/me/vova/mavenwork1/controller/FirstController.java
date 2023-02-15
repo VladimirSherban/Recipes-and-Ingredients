@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FirstController {
 
-    @GetMapping("/")
+    @GetMapping
     public String runProject() {
         return "Приложение запущено!";
     }
