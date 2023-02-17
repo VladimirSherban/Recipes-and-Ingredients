@@ -1,7 +1,8 @@
-package me.vova.mavenwork1.service;
+package me.vova.mavenwork1.service.impl;
 
 import me.vova.mavenwork1.model.Ingredient;
 import me.vova.mavenwork1.model.Recipe;
+import me.vova.mavenwork1.service.ValidationService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
