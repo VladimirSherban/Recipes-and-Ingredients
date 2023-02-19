@@ -61,8 +61,9 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient delete(Long id) {
+        Ingredient removed = ingredients.remove(id);
         fileService.saveMapToFile(ingredients, ingredientPath);
-        return ingredients.remove(id);
+        return removed;
     }
 
     @Override
@@ -75,6 +76,5 @@ public class IngredientServiceImpl implements IngredientService {
         ingredientPath = Path.of(ingredientsFilePath, ingredientsFileName);
         ingredients = fileService.readMapFromFile(ingredientPath, new TypeReference<HashMap<Long, Ingredient>>() {
         });
-
     }
 }
