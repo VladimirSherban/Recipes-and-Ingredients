@@ -72,7 +72,7 @@ public class RecipeServiceImpl implements RecipeService {
     @PostConstruct
     private void inti() {
         recipesPath = Path.of(recipesFilePath, recipesFileName);
-        recipes = fileService.readMapFromFile(recipesPath, new TypeReference<HashMap<Long, Recipe>>() {
+        recipes = fileService.readMapFromFile(recipesPath, new TypeReference<Map<Long, Recipe>>() {
         });
 
     }

@@ -29,7 +29,7 @@ public class FileService {
         }
     }
 
-    public <T> Map<Long, T> readMapFromFile(Path path, TypeReference<HashMap<Long, T>> typeReference) {
+    public <T> Map<Long, T> readMapFromFile(Path path, TypeReference<Map<Long, T>> typeReference) {
         try {
             String json = Files.readString(path);
 
