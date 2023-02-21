@@ -8,8 +8,11 @@ import me.vova.mavenwork1.service.RecipeService;
 import me.vova.mavenwork1.service.ValidationService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,6 +70,18 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Map<Long, Recipe> getAll() {
         return recipes;
+    }
+
+    @Override
+    public File readFile() {
+        return recipesPath.toFile();
+    }
+
+    @Override
+    public void uploadFile(MultipartFile file) throws IOException {
+        fileService.uploadFile(file, recipesPath);
+        recipes = fileService.readMapFromFile(recipesPath, new TypeReference<Map<Long, Recipe>>() {
+        });
     }
 
     @PostConstruct
