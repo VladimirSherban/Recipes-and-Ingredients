@@ -3,6 +3,7 @@ package me.vova.mavenwork1.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.RequiredArgsConstructor;
 import me.vova.mavenwork1.exception.ValidationException;
+import me.vova.mavenwork1.model.Ingredient;
 import me.vova.mavenwork1.model.Recipe;
 import me.vova.mavenwork1.service.RecipeService;
 import me.vova.mavenwork1.service.ValidationService;
@@ -32,6 +33,9 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Value("${name.of.recipes.file}")
     private String recipesFileName;
+
+    @Value("${name.of.recipes.txt.file}")
+    private String recipesTxtFileName;
 
     private Path recipesPath;
 
@@ -84,11 +88,39 @@ public class RecipeServiceImpl implements RecipeService {
         });
     }
 
+    @Override
+    public File prepareRecipesTxt() throws IOException {
+        return fileService
+                .saveToFile(recipesToString(), Path.of(recipesFilePath, recipesTxtFileName))
+                .toFile();
+    }
+
     @PostConstruct
     private void inti() {
         recipesPath = Path.of(recipesFilePath, recipesFileName);
         recipes = fileService.readMapFromFile(recipesPath, new TypeReference<Map<Long, Recipe>>() {
         });
+    }
 
+    private String recipesToString() {
+        StringBuilder sb = new StringBuilder();
+        String listEl = " ▻ ";
+        String listName = " ● ";
+
+        for (Recipe recipe : recipes.values()) {
+            sb.append("\n").append(listName).append(recipe.toString()).append("\n");
+
+            sb.append("\nИнгредиенты:\n");
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                sb.append(listEl).append(ingredient.toString()).append("\n");
+            }
+
+            sb.append("\nИнструкция приготовления:\n");
+
+            for (String step : recipe.getSteps()) {
+                sb.append(listEl).append(step).append("\n");
+            }
+        }
+        return sb.append("\n").toString();
     }
 }
