@@ -1,0 +1,56 @@
+{
+  "1": {
+    "name": "Раки со специями",
+    "cookingTime": 15,
+    "ingredients": [
+      {
+        "name": "рак",
+        "count": 30,
+        "measureUnit": "шт"
+      }
+    ],
+    "steps": [
+      "сварить"
+    ]
+  },
+  "2": {
+    "name": "Раки с петрушкой",
+    "cookingTime": 15,
+    "ingredients": [
+      {
+        "name": "рак",
+        "count": 30,
+        "measureUnit": "шт"
+      },
+      {
+        "name": "петрушка",
+        "count": 1,
+        "measureUnit": "шт"
+      }
+    ],
+    "steps": [
+      "сварить",
+      "добавить петрушку"
+    ]
+  },
+  "3": {
+    "name": "Раки с зеленью",
+    "cookingTime": 15,
+    "ingredients": [
+      {
+        "name": "рак",
+        "count": 30,
+        "measureUnit": "шт"
+      },
+      {
+        "name": "зелень",
+        "count": 1,
+        "measureUnit": "шт"
+      }
+    ],
+    "steps": [
+      "сварить",
+      "добавить зелень"
+    ]
+  }
+}
