@@ -55,7 +55,7 @@ public class FileController {
             InputStreamResource resource = new InputStreamResource(new FileInputStream(recipeFile));
 
             return ResponseEntity.ok().
-                    contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    contentType(MediaType.TEXT_PLAIN)
                     .contentLength(recipeFile.length())
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + recipeFile.getName())
                     .body(resource);
